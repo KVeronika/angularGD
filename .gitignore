@@ -1,0 +1,12 @@
+env.json
+.idea/
+/node_modules
+/build
+/dist
+/report
+/typings
+/src/tmp
+.DS_Store
+
+*.iml
+npm-debug.log
