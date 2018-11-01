@@ -1,0 +1,29 @@
+// colors
+$basic-green: #559900;
+$basic-red: #cc181e;
+$basic-gray: #666666;
+$basic-blue: #2793e8;
+$basic-light-gray: #f1f1f1;
+$white: #FFF;
+
+// fonts
+
+$fs-lg: 28px;
+$fs-md: 16px;
+$fs-sm: 14px;
+
+//mixins
+
+@mixin standart-input() {
+  height: 25px;
+}
+
+@mixin submit-btn() {
+  background-color: $basic-green;
+  color: $white;
+  font-size: $fs-md;
+}
+
+@mixin disabled {
+  background-color: $basic-gray;
+}
