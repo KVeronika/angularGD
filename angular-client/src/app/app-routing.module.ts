@@ -3,7 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { ProductsListComponent } from './products-list/products-list.component';
 import { AuthGuard } from './auth/auth.guard';
-import { LoginPageComponent } from './auth/login-page/login-page.component';
+import { LoggedInGuard } from './auth/logged-in.guard';
 
 const routes: Routes = [
     {
@@ -13,7 +13,8 @@ const routes: Routes = [
     },
     {
         path: 'login',
-        component: LoginPageComponent
+        canActivate: [LoggedInGuard],
+        loadChildren: './auth/auth.module#AuthModule'
     }
 ];
 

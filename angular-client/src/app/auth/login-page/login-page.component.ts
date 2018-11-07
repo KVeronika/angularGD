@@ -4,7 +4,7 @@ import {
     FormGroup,
     Validators
 } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Location } from '@angular/common';
 
 import { AuthService } from '../auth.service';
 import { IUser } from '../user.interface';
@@ -23,8 +23,7 @@ export class LoginPageComponent implements OnInit {
     constructor(private _authService: AuthService,
                 private _fb: FormBuilder,
                 private _tokenService: TokenService,
-                private _router: Router,
-                private _route: ActivatedRoute) {
+                private _location: Location) {
     }
 
     public get login() {
@@ -52,7 +51,7 @@ export class LoginPageComponent implements OnInit {
         this._authService.login(user).subscribe(
             response => {
                 this._tokenService.saveToken(response.headers.get('session-token'));
-                this._router.navigate([this._route.snapshot.queryParams.returnUrl]);
+                this._location.back();
             },
             error => {
                 if (error.status === 400) {

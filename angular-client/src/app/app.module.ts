@@ -5,8 +5,6 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ProductsListComponent } from './products-list/products-list.component';
-import { AuthModule } from './auth/auth.module';
-import { AuthGuard } from './auth/auth.guard';
 import { TokenInterceptor } from './auth/token-interceptor.service';
 
 @NgModule({
@@ -17,10 +15,9 @@ import { TokenInterceptor } from './auth/token-interceptor.service';
     imports: [
         BrowserModule,
         AppRoutingModule,
-        AuthModule,
         HttpClientModule
     ],
-    providers: [AuthGuard, {
+    providers: [{
         provide: HTTP_INTERCEPTORS,
         useClass: TokenInterceptor,
         multi: true
