@@ -9,6 +9,7 @@ import { Location } from '@angular/common';
 import { AuthService } from '../auth.service';
 import { IUser } from '../user.interface';
 import { TokenService } from '../token.service';
+import { UserService } from '../../user.service';
 
 @Component({
     selector: 'app-login-page',
@@ -23,7 +24,8 @@ export class LoginPageComponent implements OnInit {
     constructor(private _authService: AuthService,
                 private _fb: FormBuilder,
                 private _tokenService: TokenService,
-                private _location: Location) {
+                private _location: Location,
+                private _userServise: UserService) {
     }
 
     public get login() {
@@ -42,7 +44,7 @@ export class LoginPageComponent implements OnInit {
                 Validators.pattern('^[a-zA-Z]+')
             ]],
             password: ['', [Validators.required]]
-        });
+        }, { updateOn: 'blur' });
     }
 
     public doLogin(): void {
@@ -51,6 +53,7 @@ export class LoginPageComponent implements OnInit {
         this._authService.login(user).subscribe(
             response => {
                 this._tokenService.saveToken(response.headers.get('session-token'));
+                this._userServise.setUser(user);
                 this._location.back();
             },
             error => {

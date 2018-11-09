@@ -15,6 +15,7 @@ export class AuthService {
 
     public login(user: IUser): Observable<HttpResponse<string>> {
         return this._http.post(`${environment.BASE_URL}/login`, user,
-            {responseType: 'text', observe: 'response'});
+            { responseType: 'text', observe: 'response' });
     }
+
 }
