@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import { IUser } from './auth/user.interface';
+
+import { IUser } from '@common/interfaces/user.interface';
 
 enum userType {
     user = 0,

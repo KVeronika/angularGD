@@ -6,10 +6,9 @@ import {
 } from '@angular/forms';
 import { Location } from '@angular/common';
 
-import { AuthService } from '../auth.service';
-import { IUser } from '../user.interface';
-import { TokenService } from '../token.service';
-import { UserService } from '../../user.service';
+import { AuthService } from '@common/services/auth.service';
+import { TokenService } from '@common/services/token.service';
+import { UserService } from '@common/services/user.service';
 
 @Component({
     selector: 'app-login-page',
@@ -21,11 +20,11 @@ export class LoginPageComponent implements OnInit {
     public loginForm: FormGroup;
     public isWrongUserInput: boolean = false;
 
-    constructor(private _authService: AuthService,
-                private _fb: FormBuilder,
-                private _tokenService: TokenService,
-                private _location: Location,
-                private _userService: UserService) {
+    constructor(private authService: AuthService,
+                private fb: FormBuilder,
+                private tokenService: TokenService,
+                private location: Location,
+                private userService: UserService) {
     }
 
     public get login() {
@@ -37,7 +36,7 @@ export class LoginPageComponent implements OnInit {
     }
 
     public ngOnInit(): void {
-        this.loginForm = this._fb.group({
+        this.loginForm = this.fb.group({
             login: ['', [
                 Validators.required,
                 Validators.minLength(3),
@@ -50,11 +49,11 @@ export class LoginPageComponent implements OnInit {
     public doLogin(): void {
         const user = this.loginForm.value;
 
-        this._authService.login(user).subscribe(
+        this.authService.login(user).subscribe(
             response => {
-                this._tokenService.saveToken(response.headers.get('session-token'));
-                this._userService.setUser(JSON.parse(response.body));
-                this._location.back();
+                this.tokenService.saveToken(response.headers.get('session-token'));
+                this.userService.setUser(JSON.parse(response.body));
+                this.location.back();
             },
             error => {
                 if (error.status === 400) {

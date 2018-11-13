@@ -1,4 +1,4 @@
-@import "../../../assets/scss/variables";
+@import "mixins";
 
 .login-page-container {
   display: flex;
@@ -9,24 +9,6 @@
 .login-page-content {
   width: 60%;
   padding: 50px;
-
-  .logo-container {
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    margin: 20px 0 100px;
-
-    .logo-img {
-      width: 100px;
-      height: 100px;
-      background-color: $basic-blue;
-    }
-
-    .welcome-message {
-      font-size: $fs-lg;
-      font-weight: bold;
-    }
-  }
 
   .form-error {
     display: flex;

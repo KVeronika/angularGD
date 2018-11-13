@@ -1,0 +1,20 @@
+@import "colors";
+@import "variables";
+
+.logo-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  margin: 20px 0 100px;
+
+  .logo-img {
+    width: 100px;
+    height: 100px;
+    background-color: $basic-blue;
+  }
+
+  .welcome-message {
+    font-size: $fs-lg;
+    font-weight: bold;
+  }
+}

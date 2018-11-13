@@ -1,0 +1,16 @@
+@import "variables";
+@import "colors";
+
+@mixin standart-input() {
+  height: 25px;
+}
+
+@mixin submit-btn() {
+  background-color: $basic-green;
+  color: $white;
+  font-size: $fs-md;
+}
+
+@mixin disabled {
+  background-color: $basic-gray;
+}

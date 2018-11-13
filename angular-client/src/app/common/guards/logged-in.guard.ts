@@ -7,24 +7,24 @@ import {
 import { Location } from '@angular/common';
 import { Observable } from 'rxjs';
 
-import { AuthService } from './auth.service';
-import { TokenService } from './token.service';
+import { AuthService } from '@common/services/auth.service';
+import { TokenService } from '@common/services/token.service';
 
 @Injectable({
     providedIn: 'root'
 })
 export class LoggedInGuard implements CanActivate {
-    constructor(private _authService: AuthService,
-                private _tokenService: TokenService,
-                private _location: Location) {
+    constructor(private authService: AuthService,
+                private tokenService: TokenService,
+                private location: Location) {
     }
 
     canActivate(
         next: ActivatedRouteSnapshot,
         state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
 
-        if (this._tokenService.getToken()) {
-            this._location.back();
+        if (this.tokenService.getToken()) {
+            this.location.back();
             return false;
         }
 

@@ -4,12 +4,14 @@ import { ReactiveFormsModule } from '@angular/forms';
 
 import { LoginPageComponent } from './login-page/login-page.component';
 import { AuthRoutingModule } from './auth-routing.module';
+import { ComponentsModule } from '@common/components/components.module';
 
 @NgModule({
     imports: [
         CommonModule,
         ReactiveFormsModule,
-        AuthRoutingModule
+        AuthRoutingModule,
+        ComponentsModule
     ],
     declarations: [LoginPageComponent]
 })
