@@ -25,7 +25,7 @@ export class LoginPageComponent implements OnInit {
                 private _fb: FormBuilder,
                 private _tokenService: TokenService,
                 private _location: Location,
-                private _userServise: UserService) {
+                private _userService: UserService) {
     }
 
     public get login() {
@@ -48,12 +48,12 @@ export class LoginPageComponent implements OnInit {
     }
 
     public doLogin(): void {
-        const user: IUser = this.loginForm.value;
+        const user = this.loginForm.value;
 
         this._authService.login(user).subscribe(
             response => {
                 this._tokenService.saveToken(response.headers.get('session-token'));
-                this._userServise.setUser(user);
+                this._userService.setUser(JSON.parse(response.body));
                 this._location.back();
             },
             error => {

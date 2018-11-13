@@ -17,6 +17,16 @@ function isValidUser(login, password) {
     return isValid;
 }
 
+function getUser(login, password) {
+    var loggedUser;
+    users.forEach(function(user) {
+        if(user.login === login && user.password === password) {
+            loggedUser = user;
+        }
+    });
+    return loggedUser;
+}
+
 function checkLoginAuth(login, sessionToken) {
     const token = authorizedUsers[login];
 
@@ -54,7 +64,8 @@ function login(req, res, next) {
     const newSessionToken = uuidV1();
     authorizedUsers[login] = newSessionToken;
     res.set(sessionTokenName, newSessionToken);
-    res.sendStatus(200);
+    res.status(200);
+    res.send(getUser(login, password));
 }
 function logout(req, res, next) {
     const login = req.body.login;

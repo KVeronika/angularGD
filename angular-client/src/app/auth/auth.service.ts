@@ -18,4 +18,9 @@ export class AuthService {
             { responseType: 'text', observe: 'response' });
     }
 
+    public logout(login: string): Observable<HttpResponse<string>> {
+        return this._http.post(`${environment.BASE_URL}/logout`, {login},
+            { responseType: 'text', observe: 'response' });
+    }
+
 }

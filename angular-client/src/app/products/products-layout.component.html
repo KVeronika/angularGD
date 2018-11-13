@@ -5,7 +5,8 @@
     </div>
     <div class="header-user-container">
         <div class="user-name">Hello, {{userName | titlecase}}</div>
-        <button class="logout-btn">Logout</button>
+        <button class="logout-btn"
+                (click)="doLogout()">Logout</button>
     </div>
 </header>
 <div class="page-content">
