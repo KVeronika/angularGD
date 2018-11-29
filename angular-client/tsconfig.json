@@ -19,7 +19,6 @@
     ],
     "paths": {
       "@env/*": ["environments/*"],
-      "@styles/*": ["app/styles/*"],
       "@common/*": ["app/common/*"],
       "@pages/*": ["app/pages/*"],
       "@layouts/*": ["app/layouts/*"]

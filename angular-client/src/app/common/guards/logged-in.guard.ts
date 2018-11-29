@@ -1,11 +1,6 @@
 import { Injectable } from '@angular/core';
-import {
-    CanActivate,
-    ActivatedRouteSnapshot,
-    RouterStateSnapshot,
-} from '@angular/router';
+import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot} from '@angular/router';
 import { Location } from '@angular/common';
-import { Observable } from 'rxjs';
 
 import { AuthService } from '@common/services/auth.service';
 import { TokenService } from '@common/services/token.service';
@@ -19,12 +14,10 @@ export class LoggedInGuard implements CanActivate {
                 private location: Location) {
     }
 
-    canActivate(
-        next: ActivatedRouteSnapshot,
-        state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
-
+    canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
         if (this.tokenService.getToken()) {
             this.location.back();
+
             return false;
         }
 

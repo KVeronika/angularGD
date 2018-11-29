@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 
-import { Constants } from '@common/constants/constants';
+import { CONSTANTS } from '@common/constants/constants';
+import { IUser } from '@common/interfaces/user.interface';
 
 @Injectable({
     providedIn: 'root'
@@ -8,14 +9,22 @@ import { Constants } from '@common/constants/constants';
 export class TokenService {
 
     public saveToken(data: string): void {
-        localStorage.setItem(Constants.TOKEN_NAME, data);
+        localStorage.setItem(CONSTANTS.TOKEN_NAME, data);
+    }
+
+    public saveUser(data: IUser): void {
+        localStorage.setItem(CONSTANTS.USER_DATA, JSON.stringify(data));
     }
 
     public removeToken(): void {
-        localStorage.removeItem(Constants.TOKEN_NAME);
+        localStorage.removeItem(CONSTANTS.TOKEN_NAME);
     }
 
     public getToken(): string {
-        return localStorage.getItem(Constants.TOKEN_NAME) || '';
+        return localStorage.getItem(CONSTANTS.TOKEN_NAME) || '';
+    }
+
+    public getUser(): IUser {
+        return JSON.parse(localStorage.getItem(CONSTANTS.USER_DATA));
     }
 }

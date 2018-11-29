@@ -1,26 +1,47 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpResponse } from '@angular/common/http';
+import { HttpResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { tap } from 'rxjs/operators';
 
-import { environment } from '@env/environment';
 import { IUser } from '@common/interfaces/user.interface';
+import { RequestService } from '@common/services/request.service';
+import { TokenService } from '@common/services/token.service';
+import { UserService } from '@common/services/user.service';
+import { CONSTANTS } from '@common/constants/constants';
+import { ENDPOINTS } from '@common/constants/endpoints';
 
 @Injectable({
     providedIn: 'root'
 })
 export class AuthService {
 
-    constructor(private http: HttpClient) {
+    constructor(private requestService: RequestService,
+                private tokenService: TokenService,
+                private userService: UserService) {
     }
 
     public login(user: IUser): Observable<HttpResponse<string>> {
-        return this.http.post(`${environment.BASE_URL}/login`, user,
-            { responseType: 'text', observe: 'response' });
+        const options = { responseType: 'text', observe: 'response' };
+
+        return this.requestService.post(ENDPOINTS.LOGIN, user, options)
+            .pipe(
+                tap(response => {
+                    const token = response.headers.get(CONSTANTS.TOKEN_NAME);
+                    const userResp = JSON.parse(response.body);
+
+                    this.tokenService.saveToken(token);
+                    this.userService.setUser(userResp);
+                })
+            );
     }
 
     public logout(login: string): Observable<HttpResponse<string>> {
-        return this.http.post(`${environment.BASE_URL}/logout`, {login},
-            { responseType: 'text', observe: 'response' });
+        const options = { responseType: 'text', observe: 'response' };
+
+        return this.requestService.post(ENDPOINTS.LOGOUT, { login }, options)
+            .pipe(
+                tap(() => this.tokenService.removeToken())
+            );
     }
 
 }

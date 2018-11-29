@@ -1,14 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import {
-    FormBuilder,
-    FormGroup,
-    Validators
-} from '@angular/forms';
-import { Location } from '@angular/common';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import { AuthService } from '@common/services/auth.service';
-import { TokenService } from '@common/services/token.service';
-import { UserService } from '@common/services/user.service';
+import { LogoSize } from '@common/enums/logoSize';
 
 @Component({
     selector: 'app-login-page',
@@ -19,12 +14,12 @@ export class LoginPageComponent implements OnInit {
 
     public loginForm: FormGroup;
     public isWrongUserInput: boolean = false;
+    public logoSize: number = LogoSize.large;
 
     constructor(private authService: AuthService,
                 private fb: FormBuilder,
-                private tokenService: TokenService,
-                private location: Location,
-                private userService: UserService) {
+                private router: Router,
+                private route: ActivatedRoute) {
     }
 
     public get login() {
@@ -36,31 +31,37 @@ export class LoginPageComponent implements OnInit {
     }
 
     public ngOnInit(): void {
-        this.loginForm = this.fb.group({
-            login: ['', [
-                Validators.required,
-                Validators.minLength(3),
-                Validators.pattern('^[a-zA-Z]+')
-            ]],
-            password: ['', [Validators.required]]
-        }, { updateOn: 'blur' });
+        this.initLoginForm();
     }
 
     public doLogin(): void {
         const user = this.loginForm.value;
 
-        this.authService.login(user).subscribe(
-            response => {
-                this.tokenService.saveToken(response.headers.get('session-token'));
-                this.userService.setUser(JSON.parse(response.body));
-                this.location.back();
-            },
-            error => {
-                if (error.status === 400) {
-                    this.isWrongUserInput = true;
-                }
-            }
-        );
+        this.authService.login(user)
+            .subscribe(
+                () => this.router.navigate([this.route.snapshot.queryParams.returnUrl]),
+                error => this.handleError(error),
+            );
+    }
+
+    private initLoginForm(): void {
+        const loginControl = this.fb.control('', [
+            Validators.required,
+            Validators.minLength(3),
+            Validators.pattern('^[a-zA-Z]+')
+        ]);
+        const passwordControl = this.fb.control('', [Validators.required]);
+
+        this.loginForm = this.fb.group({
+            login: loginControl,
+            password: passwordControl
+        }, { updateOn: 'blur' });
+    }
+
+    private handleError(error): void {
+        if (error.status === 400) {
+            this.isWrongUserInput = true;
+        }
     }
 
 }

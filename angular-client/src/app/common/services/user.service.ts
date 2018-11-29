@@ -1,28 +1,31 @@
 import { Injectable } from '@angular/core';
 
 import { IUser } from '@common/interfaces/user.interface';
-
-enum userType {
-    user = 0,
-    admin = 1
-}
+import { UserType } from '@common/enums/userType';
+import { TokenService } from '@common/services/token.service';
 
 @Injectable({
     providedIn: 'root'
 })
 export class UserService {
-    private user: IUser;
+
+    constructor(private tokenService: TokenService) {
+    }
+
+    public get user(): IUser {
+        return this.tokenService.getUser();
+    }
 
     public getLoggedUserName(): string {
-        return this.user ? this.user.login : 'Test';
+        return this.user ? this.user.login : '';
     }
 
     public setUser(user: IUser): void {
-        this.user = user;
+        this.tokenService.saveUser(user);
     }
 
     public isAdmin(): boolean {
-        return this.user.roleId === userType.admin;
+        return this.user.roleId === UserType.admin;
     }
 
 }

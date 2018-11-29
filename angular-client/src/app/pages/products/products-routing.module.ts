@@ -1,14 +1,14 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { ProductsLayoutComponent } from '@layouts/main-layout/products-layout.component';
+import { MainLayoutComponent } from '@layouts/main-layout/main-layout.component';
 import { ProductsListComponent } from './products-list/products-list.component';
 import { ProductDetailsComponent } from './product-details/product-details.component';
 
 const routes: Routes = [
     {
         path: '',
-        component: ProductsLayoutComponent,
+        component: MainLayoutComponent,
         children: [
             {
                 path: '',

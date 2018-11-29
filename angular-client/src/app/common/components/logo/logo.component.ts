@@ -1,15 +1,19 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
+
+import { LogoSize } from '@common/enums/logoSize';
 
 @Component({
-  selector: 'app-logo',
-  templateUrl: './logo.component.html',
-  styleUrls: ['./logo.component.scss']
+    selector: 'app-logo',
+    templateUrl: './logo.component.html',
+    styleUrls: ['./logo.component.scss']
 })
-export class LogoComponent implements OnInit {
+export class LogoComponent {
 
-  constructor() { }
+    @Input()
+    public size: number;
 
-  ngOnInit() {
-  }
+    get logoClass(): string {
+        return this.size === LogoSize.large ? 'logo-large' : 'logo-small';
+    }
 
 }

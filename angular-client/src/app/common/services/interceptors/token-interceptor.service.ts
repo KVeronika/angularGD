@@ -1,13 +1,8 @@
 import { Injectable } from '@angular/core';
-import {
-    HttpEvent,
-    HttpHandler,
-    HttpInterceptor,
-    HttpRequest
-} from '@angular/common/http';
+import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
-import { Constants } from '@common/constants/constants';
+import { CONSTANTS } from '@common/constants/constants';
 import { TokenService } from '@common/services/token.service';
 
 @Injectable({
@@ -20,7 +15,7 @@ export class TokenInterceptor implements HttpInterceptor {
 
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         const request = req.clone({
-            headers: req.headers.append(Constants.TOKEN_NAME, this.tokenService.getToken())
+            headers: req.headers.append(CONSTANTS.TOKEN_NAME, this.tokenService.getToken())
         });
 
         return next.handle(request);

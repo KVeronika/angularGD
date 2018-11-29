@@ -1,3 +1,4 @@
-export const Constants = {
-    TOKEN_NAME: 'session-token'
+export const CONSTANTS = {
+    TOKEN_NAME: 'session-token',
+    USER_DATA: 'user'
 };

@@ -4,15 +4,18 @@ import { Router } from '@angular/router';
 import { UserService } from '@common/services/user.service';
 import { AuthService } from '@common/services/auth.service';
 import { TokenService } from '@common/services/token.service';
+import { LogoSize } from '@common/enums/logoSize';
+import { APP_ROUTES } from '@common/constants/routes';
 
 @Component({
     selector: 'app-products-layout',
-    templateUrl: './products-layout.component.html',
-    styleUrls: ['./products-layout.component.scss']
+    templateUrl: './main-layout.component.html',
+    styleUrls: ['./main-layout.component.scss'],
 })
-export class ProductsLayoutComponent implements OnInit {
+export class MainLayoutComponent implements OnInit {
 
-    public userName: string = 'test';
+    public userName: string;
+    public logoSize: number = LogoSize.small;
 
     constructor(private userService: UserService,
                 private authService: AuthService,
@@ -25,10 +28,8 @@ export class ProductsLayoutComponent implements OnInit {
     }
 
     public doLogout() {
-        this.authService.logout(this.userName).subscribe((response) => {
-            this.tokenService.removeToken();
-            this.router.navigate(['/login']);
-        });
+        this.authService.logout(this.userName)
+            .subscribe(() => this.router.navigate([APP_ROUTES.LOGIN_PAGE]));
     }
 
 }

@@ -1,0 +1,16 @@
+@import "variables";
+@import "colors";
+
+.alert {
+  font-size: $fs-sm;
+  margin-bottom: 5px;
+}
+
+.alert-danger {
+  color: $basic-red;
+}
+
+.global-form-error {
+  display: flex;
+  justify-content: center;
+}

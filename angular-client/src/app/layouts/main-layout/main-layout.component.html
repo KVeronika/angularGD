@@ -1,12 +1,8 @@
 <header class="page-header">
-    <div class="header-logo-container">
-        <div class="header-logo"></div>
-        <div>Logo</div>
-    </div>
+    <app-logo [size]="logoSize"></app-logo>
     <div class="header-user-container">
         <div class="user-name">Hello, {{userName | titlecase}}</div>
-        <button class="logout-btn"
-                (click)="doLogout()">Logout</button>
+        <button class="logout-btn" (click)="doLogout()">Logout</button>
     </div>
 </header>
 <div class="page-content">
