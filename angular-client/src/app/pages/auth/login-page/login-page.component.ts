@@ -36,10 +36,11 @@ export class LoginPageComponent implements OnInit {
 
     public doLogin(): void {
         const user = this.loginForm.value;
+        const returnUrl = this.route.snapshot.queryParams.returnUrl || '/';
 
         this.authService.login(user)
             .subscribe(
-                () => this.router.navigate([this.route.snapshot.queryParams.returnUrl]),
+                () => this.router.navigate([returnUrl]),
                 error => this.handleError(error),
             );
     }

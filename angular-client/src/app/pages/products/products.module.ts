@@ -6,6 +6,9 @@ import { ProductsListComponent } from './products-list/products-list.component';
 import { ProductDetailsComponent } from './product-details/product-details.component';
 import { MainLayoutComponent } from '@layouts/main-layout/main-layout.component';
 import { ComponentsModule } from '@common/components/components.module';
+import { FilterComponent } from './products-list/components/filter/filter.component';
+import { ProductCardComponent } from './products-list/components/product-card/product-card.component';
+import { EditProductComponent } from './product-details/components/edit-product/edit-product.component';
 
 @NgModule({
     imports: [
@@ -17,6 +20,9 @@ import { ComponentsModule } from '@common/components/components.module';
         MainLayoutComponent,
         ProductsListComponent,
         ProductDetailsComponent,
+        FilterComponent,
+        ProductCardComponent,
+        EditProductComponent,
     ]
 })
 export class ProductsModule {

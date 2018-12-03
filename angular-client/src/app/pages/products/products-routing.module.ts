@@ -15,6 +15,11 @@ const routes: Routes = [
                 component: ProductsListComponent
             },
             {
+                path: 'products',
+                redirectTo: '/',
+                pathMatch: 'full'
+            },
+            {
                 path: 'product-details',
                 component: ProductDetailsComponent
             }

@@ -1,8 +1,8 @@
 <header class="page-header">
-    <app-logo [size]="logoSize"></app-logo>
+    <app-logo class="header-logo" [size]="logoSize"></app-logo>
     <div class="header-user-container">
         <div class="user-name">Hello, {{userName | titlecase}}</div>
-        <button class="logout-btn" (click)="doLogout()">Logout</button>
+        <button class="btn logout-btn" (click)="doLogout()">Logout</button>
     </div>
 </header>
 <div class="page-content">

@@ -7,6 +7,11 @@
   height: $header-height;
   padding: 20px;
   background-color: $basic-light-gray;
+
+  .header-logo {
+    display: flex;
+    align-items: center;
+  }
 }
 
 .header-user-container {
@@ -16,6 +21,15 @@
 
   .user-name {
     margin-right: 15px;
+  }
+
+  .logout-btn {
+    border: 0;
+    background-color: transparent;
+    color: $basic-blue;
+    font-size: $fs-md;
+    padding: 0;
+    cursor: pointer;
   }
 }
 
