@@ -1,0 +1,65 @@
+@import "colors";
+@import "variables";
+
+.expand-filters, .filters-container {
+  background-color: $basic-light-blue;
+  margin: 0 -20px;
+}
+
+.expand-filters {
+  padding: 0 10px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  height: 30px;
+}
+
+.filters-container {
+  padding: 10px 40px;
+}
+
+.filters-row {
+  display: flex;
+  justify-content: space-between;
+}
+
+.available-filter {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.rating-input {
+  display: block;
+  height: $filter-input;
+}
+
+.price-row {
+  align-items: flex-end;
+}
+
+.price-block, .form-controls {
+  display: flex;
+  flex-grow: 1;
+}
+
+.price-block {
+  flex-direction: column;
+
+  input {
+    height: $filter-input;
+  }
+}
+
+.form-controls {
+  align-items: flex-end;
+}
+
+.btn {
+  height: 20px;
+  box-sizing: content-box;
+}
+
+.margin-right-20 {
+  margin-right: 20px;
+}

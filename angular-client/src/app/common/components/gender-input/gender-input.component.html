@@ -1,0 +1,11 @@
+<label for="gender">Gender</label>
+<div id="gender" class="genders-container">
+    <label *ngFor="let gender of genders" class="gender-label">
+        <input type="radio"
+               name="gender"
+               [value]="gender"
+               (change)="onRadioChange(gender)"
+               [checked]="gender === value">
+        {{gender | titlecase}}
+    </label>
+</div>

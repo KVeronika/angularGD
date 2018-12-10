@@ -1,0 +1,23 @@
+@import "colors";
+
+.search-container {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 10px;
+}
+
+.search-input, .btn-search {
+  height: 30px;
+  border: 1px solid $basic-gray;
+  outline: 0;
+}
+
+.search-input {
+  border-radius: 10px 0 0 10px;
+  width: 300px;
+}
+
+.btn-search {
+  border-radius: 0 10px 10px 0;
+  box-sizing: content-box;
+}

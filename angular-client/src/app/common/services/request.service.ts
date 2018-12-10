@@ -12,6 +12,10 @@ export class RequestService {
     constructor(private http: HttpClient) {
     }
 
+    public get(relativeUrl: string): Observable<any> {
+        return this.http.get(`${environment.BASE_URL}${relativeUrl}`);
+    }
+
     public post(relativeUrl: string, data: object, options: object): Observable<HttpResponse<string>> {
         const url = `${environment.BASE_URL}${relativeUrl}`;
 

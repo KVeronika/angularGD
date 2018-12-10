@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import { IUser } from '@common/interfaces/user.interface';
+import { User } from '@common/models/user.model';
 import { UserType } from '@common/enums/userType';
 import { TokenService } from '@common/services/token.service';
 
@@ -12,7 +12,7 @@ export class UserService {
     constructor(private tokenService: TokenService) {
     }
 
-    public get user(): IUser {
+    public get user(): User {
         return this.tokenService.getUser();
     }
 
@@ -20,7 +20,7 @@ export class UserService {
         return this.user ? this.user.login : '';
     }
 
-    public setUser(user: IUser): void {
+    public setUser(user: User): void {
         this.tokenService.saveUser(user);
     }
 

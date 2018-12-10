@@ -1,3 +1,44 @@
-<p>
-  filter works!
-</p>
+<div class="expand-filters" (click)="toggleFilters()">
+    <i *ngIf="!isFiltersExpanded" class="material-icons">arrow_drop_down</i>
+    <i *ngIf="isFiltersExpanded" class="material-icons">arrow_drop_up</i>
+</div>
+<div *ngIf="isFiltersExpanded" class="filters-container">
+    <form *ngIf="filtersForm" [formGroup]="filtersForm">
+        <div class="filters-row">
+            <div class="filter available-filter">
+                <label for="available-checkbox">Available only</label>
+                <input formControlName="availableOnly" id="available-checkbox" type="checkbox">
+            </div>
+            <div class="filter">
+                <app-gender-input formControlName="gender"></app-gender-input>
+            </div>
+            <div class="filter">
+                <app-category-input formControlName="category" [categories]="categories"></app-category-input>
+            </div>
+            <div class="filter">
+                <label for="rating-input">Rating</label>
+                <input type="number" id="rating-input" class="rating-input" formControlName="rating">
+                <label for="rating-input" *ngIf="rating.touched && rating.invalid" class="alert alert-danger">
+                    <span *ngIf="rating.hasError('min')">Rating should not be less than 1</span>
+                    <span *ngIf="rating.hasError('max')">Rating should not be more than 5</span>
+                </label>
+            </div>
+        </div>
+        <div class="filters-row price-row">
+            <div class="filter price-block">
+                <label for="price-control">Price</label>
+                <div id="price-control" formGroupName="price">
+                    <input type="number" class="margin-right-20" placeholder="from" formControlName="from">
+                    <input type="number" placeholder="to" formControlName="to">
+                </div>
+                <label for="price-control" *ngIf="price.touched && price.invalid" class="alert alert-danger">
+                    'From' should not be bigger than 'To'
+                </label>
+            </div>
+            <div class="form-controls">
+                <button class="btn btn-submit margin-right-20" type="button" (click)="onApply()">Apply</button>
+                <button class="btn btn-clear" type="button" (click)="onClear()">Clear</button>
+            </div>
+        </div>
+    </form>
+</div>

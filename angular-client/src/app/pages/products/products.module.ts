@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { ProductsRoutingModule } from './products-routing.module';
 import { ProductsListComponent } from './products-list/products-list.component';
@@ -9,11 +10,14 @@ import { ComponentsModule } from '@common/components/components.module';
 import { FilterComponent } from './products-list/components/filter/filter.component';
 import { ProductCardComponent } from './products-list/components/product-card/product-card.component';
 import { EditProductComponent } from './product-details/components/edit-product/edit-product.component';
+import { SearchComponent } from './products-list/components/search/search.component';
 
 @NgModule({
     imports: [
         CommonModule,
         ProductsRoutingModule,
+        FormsModule,
+        ReactiveFormsModule,
         ComponentsModule
     ],
     declarations: [
@@ -23,6 +27,7 @@ import { EditProductComponent } from './product-details/components/edit-product/
         FilterComponent,
         ProductCardComponent,
         EditProductComponent,
+        SearchComponent
     ]
 })
 export class ProductsModule {
