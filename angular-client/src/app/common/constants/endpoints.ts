@@ -1,4 +1,6 @@
 export const ENDPOINTS = {
     LOGIN: '/login',
-    LOGOUT: '/logout'
+    LOGOUT: '/logout',
+    CATEGORIES: '/categories',
+    PRODUCTS: '/products'
 };
