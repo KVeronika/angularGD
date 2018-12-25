@@ -51,7 +51,7 @@ export class FilterComponent implements OnInit {
     public onApply() {
         const filters = this.filtersForm.value;
 
-        // this.productsService.applyFilter(filters);
+        this.productsService.applyFilter(filters);
     }
 
     public onClear() {
@@ -59,24 +59,25 @@ export class FilterComponent implements OnInit {
             availableOnly: false,
             gender: 'unisex',
             category: -1,
-            rating: 1
+            rating: ''
         });
         this.filtersForm.controls['price'].patchValue({
-            from: 0,
-            to: 0
+            from: '',
+            to: ''
         });
+        this.productsService.getProducts();
     }
 
     private initForm(): void {
         const availableControl = this.formBuilder.control(false);
         const genderControl = this.formBuilder.control('unisex');
         const categoriesControl = this.formBuilder.control(-1);
-        const ratingControl = this.formBuilder.control(1,
+        const ratingControl = this.formBuilder.control('',
             [Validators.min(1), Validators.max(5)]
         );
         const priceGroup = this.formBuilder.group({
-            from: this.formBuilder.control(0, [Validators.min(0)]),
-            to: this.formBuilder.control(0, [Validators.min(0)])
+            from: this.formBuilder.control('', [Validators.min(0)]),
+            to: this.formBuilder.control('', [Validators.min(0)])
         }, { updateOn: 'blur' });
 
         priceGroup.setValidators(this.priceValidator());

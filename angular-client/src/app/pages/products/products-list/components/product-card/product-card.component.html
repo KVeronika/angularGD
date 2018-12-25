@@ -1,3 +1,12 @@
-<p>
-  product-card works!
-</p>
+<div class="product-card">
+    <img src="{{product.image}}" alt="{{product.name}}" class="product-image col-12">
+    <h3 class="product-title">{{product.name}}</h3>
+    <div class="product-description">{{product.description}}</div>
+    <div class="product-card-bottom">
+        <div class="product-price">{{product.cost | currency}}</div>
+        <div class="card-controls">
+            <button class="btn" (click)="onDelete(product.id)">Delete</button>
+            <a [routerLink]="['product-details/', product.id]" class="btn-link">Details</a>
+        </div>
+    </div>
+</div>

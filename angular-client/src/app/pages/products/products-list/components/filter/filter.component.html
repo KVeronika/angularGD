@@ -17,7 +17,7 @@
             </div>
             <div class="filter">
                 <label for="rating-input">Rating</label>
-                <input type="number" id="rating-input" class="rating-input" formControlName="rating">
+                <input type="number" id="rating-input" class="rating-input" formControlName="rating" placeholder="Enter rating">
                 <label for="rating-input" *ngIf="rating.touched && rating.invalid" class="alert alert-danger">
                     <span *ngIf="rating.hasError('min')">Rating should not be less than 1</span>
                     <span *ngIf="rating.hasError('max')">Rating should not be more than 5</span>
@@ -42,3 +42,4 @@
         </div>
     </form>
 </div>
+<app-search *ngIf="isFiltersExpanded"></app-search>

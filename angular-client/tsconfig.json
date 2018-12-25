@@ -21,7 +21,8 @@
       "@env/*": ["environments/*"],
       "@common/*": ["app/common/*"],
       "@pages/*": ["app/pages/*"],
-      "@layouts/*": ["app/layouts/*"]
+      "@layouts/*": ["app/layouts/*"],
+      "@assets/*": ["assets/*"]
     }
   }
 }

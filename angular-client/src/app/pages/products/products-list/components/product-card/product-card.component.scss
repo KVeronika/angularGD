@@ -1,0 +1,46 @@
+@import "variables";
+@import "colors";
+
+.product-card {
+  padding: 10px;
+  margin: 20px;
+  border: 1px solid $basic-gray;
+}
+
+.product-image {
+  height: auto;
+}
+
+.product-price {
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.product-card-bottom {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 10px;
+  align-items: center;
+}
+
+.btn-link {
+  border-color: rgb(216, 216, 216) rgb(209, 209, 209) rgb(186, 186, 186);
+  border-style: solid;
+  border-width: 1px;
+  padding: 1px 7px 2px;
+  text-decoration: none;
+  align-items: flex-start;
+  text-align: center;
+  cursor: default;
+  box-sizing: border-box;
+  text-rendering: auto;
+  letter-spacing: normal;
+  word-spacing: normal;
+  text-transform: none;
+  text-indent: 0;
+  text-shadow: none;
+  display: inline-block;
+  font: 400 16px system-ui;
+  color: $black;
+  margin-left: 10px;
+}

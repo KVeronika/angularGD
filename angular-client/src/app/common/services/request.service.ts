@@ -9,6 +9,8 @@ import { environment } from '@env/environment';
 })
 export class RequestService {
 
+    private readonly OPTIONS: object = { responseType: 'text', observe: 'response' };
+
     constructor(private http: HttpClient) {
     }
 
@@ -16,10 +18,16 @@ export class RequestService {
         return this.http.get(`${environment.BASE_URL}${relativeUrl}`);
     }
 
-    public post(relativeUrl: string, data: object, options: object): Observable<HttpResponse<string>> {
+    public post(relativeUrl: string, data: object): Observable<HttpResponse<string>> {
         const url = `${environment.BASE_URL}${relativeUrl}`;
 
-        return this.http.post<HttpResponse<string>>(url, data, options);
+        return this.http.post<HttpResponse<string>>(url, data, this.OPTIONS);
+    }
+
+    public delete(relativeUrl: string): Observable<HttpResponse<string>> {
+        const url = `${environment.BASE_URL}${relativeUrl}`;
+
+        return this.http.delete<HttpResponse<string>>(url);
     }
 
 }

@@ -1,5 +1,7 @@
 <app-filter></app-filter>
-<app-search></app-search>
-<p>
-    products-list works!
-</p>
+<div class="products-container">
+    <app-product-card *ngFor="let product of products"
+                      class="col-6"
+                      [product]="product"
+                      (deleteProduct)="deleteProduct($event)"></app-product-card>
+</div>

@@ -21,9 +21,7 @@ export class AuthService {
     }
 
     public login(user: User): Observable<HttpResponse<string>> {
-        const options = { responseType: 'text', observe: 'response' };
-
-        return this.requestService.post(ENDPOINTS.LOGIN, user, options)
+        return this.requestService.post(ENDPOINTS.LOGIN, user)
             .pipe(
                 tap(response => {
                     const token = response.headers.get(CONSTANTS.TOKEN_NAME);
@@ -36,9 +34,7 @@ export class AuthService {
     }
 
     public logout(login: string): Observable<HttpResponse<string>> {
-        const options = { responseType: 'text', observe: 'response' };
-
-        return this.requestService.post(ENDPOINTS.LOGOUT, { login }, options)
+        return this.requestService.post(ENDPOINTS.LOGOUT, { login })
             .pipe(
                 tap(() => this.tokenService.removeToken())
             );

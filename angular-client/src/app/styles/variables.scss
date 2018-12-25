@@ -11,3 +11,11 @@ $fs-sm: 14px;
 // heights
 
 $filter-input: 20px;
+
+// screens
+$xs-max: 576px;
+$sm-min: $xs-max + 1px;
+$sm-max: 768px;
+$md-min: $sm-max + 1px;
+$md-max: 992px;
+$lg-min: $md-max + 1;
