@@ -1,3 +1,19 @@
-<p>
-  product-details works!
-</p>
+<div *ngIf="product && inViewMode">
+    <div class="product-info-container">
+        <div class="left-info col-6">
+            <img class="product-image col-12" src="{{product.image}}" alt="{{product.name}}">
+            <div class="figures-container">
+                <h3 class="product-price">{{product.cost | currency}}</h3>
+                <h3 class="product-gender">{{product.gender}}</h3>
+                <h3 class="product-category">{{categoryName}}</h3>
+            </div>
+        </div>
+        <div class="right-info col-6">
+            <h2>{{product.name}}</h2>
+            <p>{{product.description}}</p>
+        </div>
+    </div>
+    <div class="product-controls">
+        <button class="btn btn-submit buy-btn col-6" type="button">Buy</button>
+    </div>
+</div>

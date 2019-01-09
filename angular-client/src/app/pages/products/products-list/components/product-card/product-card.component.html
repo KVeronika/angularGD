@@ -1,5 +1,8 @@
 <div class="product-card">
-    <img src="{{product.image}}" alt="{{product.name}}" class="product-image col-12">
+    <img src="{{product.image}}"
+         onError="this.src='./src/assets/images/noimage.jpg';"
+         alt="{{product.name}}"
+         class="product-image col-12">
     <h3 class="product-title">{{product.name}}</h3>
     <div class="product-description">{{product.description}}</div>
     <div class="product-card-bottom">

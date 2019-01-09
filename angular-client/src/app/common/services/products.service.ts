@@ -5,6 +5,7 @@ import { Product } from '@common/models/product.model';
 import { RequestService } from '@common/services/request.service';
 import { ENDPOINTS } from '@common/constants/endpoints';
 import { Gender } from '@common/enums/gender';
+import { FilterModel } from '@common/models/filter.model';
 
 @Injectable({
     providedIn: 'root'
@@ -23,6 +24,10 @@ export class ProductsService {
             .subscribe(products => {
                 this.updateProducts(products);
             });
+    }
+
+    public getProductById(id: number) {
+        return this.requestService.get(`${ENDPOINTS.PRODUCTS}/${id}`);
     }
 
     public applyFilter(filtersObj) {
@@ -49,24 +54,22 @@ export class ProductsService {
         this.$products.next(this._products);
     }
 
-    private processFilters(filtersObj): string {
-        const filters = Object.entries(filtersObj);
+    private processFilters(filters: FilterModel): string {
         let queryString = '';
 
-        for (let i = 0; i < filters.length; i++) {
-            if (filters[i][0] === 'availableOnly' && filters[i][1]) {
-                queryString += 'count_gte=0&';
-            } else if (filters[i][0] === 'gender') {
-                const genderName = filters[i][1] + '';
-                queryString += `gender=${Gender[genderName]}&`;
-            } else if (filters[i][0] === 'category' && filters[i][1] > -1) {
-                queryString += `categoryId=${filters[i][1]}&`;
-            } else if (filters[i][0] === 'rating' && filters[i][1]) {
-                queryString += `rating=${filters[i][1]}&`;
-            } else if (filters[i][0] === 'price' && filters[i][1].from && filters[i][1].to) {
-                queryString += `cost_gte=${filters[i][1].from}&cost_lte=${filters[i][1].to}&`;
-            }
+        if (filters.availableOnly) {
+            queryString += 'count_gte=0&';
         }
+        if (filters.category > -1) {
+            queryString += `categoryId=${filters.category}&`;
+        }
+        if (filters.rating) {
+            queryString += `rating=${filters.rating}&`;
+        }
+        if (filters.price.from && filters.price.to) {
+            queryString += `cost_gte=${filters.price.from}&cost_lte=${filters.price.to}&`;
+        }
+        queryString += `gender=${Gender[filters.gender]}&`;
 
         return queryString;
     }
