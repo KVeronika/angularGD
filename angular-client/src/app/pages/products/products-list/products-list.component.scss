@@ -3,3 +3,20 @@
    flex-direction: row;
    flex-wrap: wrap;
  }
+
+
+.subfilter-container {
+  display: flex;
+  justify-content: space-between;
+  margin: 0 30px;
+
+  &.push-right {
+    justify-content: flex-end;
+  }
+
+  .add-btn {
+    margin-top: 10px;
+    height: 30px;
+    padding: 0 40px;
+  }
+}

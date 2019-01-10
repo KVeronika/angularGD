@@ -10,6 +10,7 @@ import { ComponentsModule } from '@common/components/components.module';
 import { FilterComponent } from './products-list/components/filter/filter.component';
 import { ProductCardComponent } from './products-list/components/product-card/product-card.component';
 import { SearchComponent } from './products-list/components/search/search.component';
+import { AddEditProductComponent } from './product-details/components/add-edit-product/add-edit-product.component';
 
 @NgModule({
     imports: [
@@ -25,7 +26,8 @@ import { SearchComponent } from './products-list/components/search/search.compon
         ProductDetailsComponent,
         FilterComponent,
         ProductCardComponent,
-        SearchComponent
+        SearchComponent,
+        AddEditProductComponent
     ]
 })
 export class ProductsModule {

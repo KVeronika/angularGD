@@ -9,6 +9,7 @@ import {
 import { Category } from '@common/models/category.model';
 import { CategoriesService } from '@common/services/categories.service';
 import { ProductsService } from '@common/services/products.service';
+import { UserService } from '@common/services/user.service';
 
 @Component({
     selector: 'app-filter',

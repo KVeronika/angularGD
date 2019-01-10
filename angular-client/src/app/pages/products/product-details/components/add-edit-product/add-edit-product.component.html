@@ -1,0 +1,30 @@
+<div *ngIf="product">
+    <form class="product-info-container" [formGroup]="productForm">
+        <div class="left-info col-6">
+            <img class="product-image col-12"
+                 src="{{product.image}}"
+                 onError="this.src='./src/assets/images/noimage.jpg';"
+                 alt="{{product.name}}">
+            <div class="figures-container">
+                <div>
+                    <label class="cost-label" for="cost-input">$ Price</label>
+                    <input id="cost-input" formControlName="cost">
+                </div>
+                <div>
+                    <app-gender-input formControlName="gender"></app-gender-input>
+                </div>
+                <div>
+                    <app-category-input formControlName="category" [categories]="categories"></app-category-input>
+                </div>
+            </div>
+        </div>
+        <div class="right-info col-6">
+            <input class="name-input" formControlName="name">
+            <textarea class="description-input" formControlName="description" rows="5"></textarea>
+        </div>
+    </form>
+    <div class="product-controls">
+        <button class="btn btn-submit save-btn col-3" type="button">Save</button>
+        <button class="btn btn-danger cancel-btn col-3" type="button">Cancel</button>
+    </div>
+</div>

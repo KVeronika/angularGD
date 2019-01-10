@@ -1,14 +1,20 @@
-<div *ngIf="product && inViewMode">
+<div *ngIf="product">
     <div class="product-info-container">
         <div class="left-info col-6">
-            <img class="product-image col-12" src="{{product.image}}" alt="{{product.name}}">
+            <img class="product-image col-12"
+                 src="{{product.image}}"
+                 onError="this.src='./src/assets/images/noimage.jpg';"
+                 alt="{{product.name}}">
             <div class="figures-container">
-                <h3 class="product-price">{{product.cost | currency}}</h3>
-                <h3 class="product-gender">{{product.gender}}</h3>
-                <h3 class="product-category">{{categoryName}}</h3>
+                <h3>{{product.cost | currency}}</h3>
+                <h3>{{product.gender}}</h3>
+                <h3>{{categoryName}}</h3>
             </div>
         </div>
         <div class="right-info col-6">
+            <div *ngIf="isAdmin" class="btn-container">
+                <button class="btn btn-default edit-btn" (click)="onEditBtnClick()">Edit</button>
+            </div>
             <h2>{{product.name}}</h2>
             <p>{{product.description}}</p>
         </div>

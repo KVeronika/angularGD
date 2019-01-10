@@ -3,6 +3,7 @@ import { Subscription } from 'rxjs';
 
 import { ProductsService } from '@common/services/products.service';
 import { Product } from '@common/models/product.model';
+import { UserService } from '@common/services/user.service';
 
 @Component({
     selector: 'app-products-list',
@@ -13,13 +14,17 @@ export class ProductsListComponent implements OnInit, OnDestroy {
 
     public products: Product[];
 
+    public isAdmin: boolean;
+
     private productsSub: Subscription;
 
-    constructor(private productService: ProductsService) { }
+    constructor(private productService: ProductsService,
+                private userService: UserService) { }
 
     public ngOnInit() {
         this.productsSub = this.productService.$products.subscribe(products => this.products = products);
         this.productService.getProducts();
+        this.isAdmin = this.userService.isAdmin();
     }
 
     public ngOnDestroy() {

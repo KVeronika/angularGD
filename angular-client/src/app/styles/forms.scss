@@ -40,3 +40,36 @@
   background-color: $basic-gray;
   color: $white;
 }
+
+.btn-default {
+  background-color: $basic-blue;
+  color: $white;
+}
+
+.btn-danger {
+  background-color: $basic-red;
+  color: $white;
+}
+
+.btn-link {
+  border-color: rgb(216, 216, 216) rgb(209, 209, 209) rgb(186, 186, 186);
+  border-style: solid;
+  border-width: 1px;
+  padding: 1px 7px 2px;
+  text-decoration: none;
+  align-items: flex-start;
+  text-align: center;
+  cursor: default;
+  box-sizing: border-box;
+  text-rendering: auto;
+  letter-spacing: normal;
+  word-spacing: normal;
+  text-transform: none;
+  text-indent: 0;
+  text-shadow: none;
+  display: inline-block;
+  font: 400 16px system-ui;
+  color: $black;
+  margin-left: 10px;
+  font-family: Comic Sans MS, Comic Sans, cursive;
+}

@@ -14,10 +14,10 @@ export class ProductInfoResolverService implements Resolve<Product> {
     constructor(private productsService: ProductsService, private router: Router) {}
 
     resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Product> {
-        const id = +route.paramMap.get('id');
+        const id = route.paramMap.get('id');
 
-        if (id > -1) {
-            return this.productsService.getProductById(id).pipe(
+        if (id) {
+            return this.productsService.getProductById(+id).pipe(
                 take(1),
                 mergeMap(product => {
                     if (product) {

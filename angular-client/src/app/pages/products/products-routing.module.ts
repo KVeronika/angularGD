@@ -5,6 +5,8 @@ import { MainLayoutComponent } from '@layouts/main-layout/main-layout.component'
 import { ProductsListComponent } from './products-list/products-list.component';
 import { ProductDetailsComponent } from './product-details/product-details.component';
 import { ProductInfoResolverService } from '@common/services/product-info-resolver.service';
+import { AddEditProductComponent } from '@pages/products/product-details/components/add-edit-product/add-edit-product.component';
+import { AdminGuard } from '@common/guards/admin.guard';
 
 const routes: Routes = [
     {
@@ -23,6 +25,22 @@ const routes: Routes = [
             {
                 path: 'product-details/:id',
                 component: ProductDetailsComponent,
+                resolve: {
+                    product: ProductInfoResolverService
+                }
+            },
+            {
+                path: 'product-details/:id/:mode',
+                component: AddEditProductComponent,
+                canActivate: [AdminGuard],
+                resolve: {
+                    product: ProductInfoResolverService
+                }
+            },
+            {
+                path: 'add-product',
+                component: AddEditProductComponent,
+                canActivate: [AdminGuard],
                 resolve: {
                     product: ProductInfoResolverService
                 }

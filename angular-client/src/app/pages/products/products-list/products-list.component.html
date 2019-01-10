@@ -1,4 +1,8 @@
 <app-filter></app-filter>
+<div class="subfilter-container" [ngClass]="{'push-right': !isAdmin}">
+    <a *ngIf="isAdmin" class="btn add-btn btn-link" [routerLink]="['add-product']">Add product</a>
+    <app-search></app-search>
+</div>
 <div class="products-container">
     <app-product-card *ngFor="let product of products"
                       class="col-6"
