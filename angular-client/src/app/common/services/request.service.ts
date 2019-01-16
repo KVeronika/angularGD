@@ -24,6 +24,12 @@ export class RequestService {
         return this.http.post<HttpResponse<string>>(url, data, this.OPTIONS);
     }
 
+    public put(relativeUrl: string, data: object): Observable<HttpResponse<string>> {
+        const url = `${environment.BASE_URL}${relativeUrl}`;
+
+        return this.http.put<HttpResponse<string>>(url, data, this.OPTIONS);
+    }
+
     public delete(relativeUrl: string): Observable<HttpResponse<string>> {
         const url = `${environment.BASE_URL}${relativeUrl}`;
 

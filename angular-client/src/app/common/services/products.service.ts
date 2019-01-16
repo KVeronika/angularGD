@@ -22,7 +22,7 @@ export class ProductsService {
     public getProducts() {
         this.requestService.get(`${ENDPOINTS.PRODUCTS}`)
             .subscribe(products => {
-                this.updateProducts(products);
+                this.updateProductsArray(products);
             });
     }
 
@@ -33,23 +33,38 @@ export class ProductsService {
     public applyFilter(filtersObj) {
         this.requestService.get(`/products?${this.processFilters(filtersObj)}`)
             .subscribe(products => {
-                this.updateProducts(products);
+                this.updateProductsArray(products);
             });
     }
 
     public deleteProduct(id) {
         this.requestService.delete(`${ENDPOINTS.PRODUCTS}/${id}`)
-            .subscribe(() => this.updateProducts(this._products.filter(product => product.id !== id)));
+            .subscribe(() => this.updateProductsArray(this._products.filter(product => product.id !== id)));
+    }
+
+    public createProduct(newProduct: Product) {
+        this.requestService.post(`${ENDPOINTS.PRODUCTS}`, newProduct)
+            .subscribe(data => this.updateProductsArray([...this._products, JSON.parse(data.body) ]));
+    }
+
+    public updateProduct(updatedProduct: Product) {
+        this.requestService.put(`${ENDPOINTS.PRODUCTS}/${updatedProduct.id}`, updatedProduct)
+            .subscribe(data => {
+                const product = JSON.parse(data.body);
+                const index = this._products.findIndex(p => p.id === product.id);
+
+                this.updateProductsArray(this._products.splice(index, 1, product));
+            });
     }
 
     public searchProducts(searchString) {
         this.requestService.get(`${ENDPOINTS.PRODUCTS}?q=${searchString}`)
             .subscribe(products => {
-                this.updateProducts(products);
+                this.updateProductsArray(products);
             });
     }
 
-    private updateProducts(products: Product[]) {
+    private updateProductsArray(products: Product[]) {
         this._products = products;
         this.$products.next(this._products);
     }

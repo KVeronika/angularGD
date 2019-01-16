@@ -8,7 +8,7 @@
     <div class="product-card-bottom">
         <div class="product-price">{{product.cost | currency}}</div>
         <div class="card-controls">
-            <button class="btn" (click)="onDelete(product.id)">Delete</button>
+            <button *ngIf="isAdmin" class="btn" (click)="onDelete(product.id)">Delete</button>
             <a [routerLink]="['product-details/', product.id]" class="btn-link">Details</a>
         </div>
     </div>

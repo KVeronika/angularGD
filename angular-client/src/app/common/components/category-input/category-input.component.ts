@@ -18,7 +18,10 @@ export class CategoryInputComponent implements ControlValueAccessor {
     @Input()
     public categories: Category[];
 
-    public value: number;
+    @Input()
+    public predefinedCategoryId?: number;
+
+    public value: number = this.predefinedCategoryId || -1;
 
     public onChange = (category: number) => {};
 

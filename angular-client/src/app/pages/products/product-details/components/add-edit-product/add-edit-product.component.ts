@@ -1,11 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { Location } from '@angular/common';
 
 import { Category } from '@common/models/category.model';
 import { Product } from '@common/models/product.model';
 import { CategoriesService } from '@common/services/categories.service';
 import { Gender } from '@common/enums/gender';
+import { ProductsService } from '@common/services/products.service';
+
+const enum Mode {
+    edit = 'edit',
+    create =  'create'
+}
 
 @Component({
     selector: 'app-add-edit-product',
@@ -20,19 +27,39 @@ export class AddEditProductComponent implements OnInit {
 
     public productForm: FormGroup;
 
+    public mode: string;
+
     constructor(private route: ActivatedRoute,
                 private categoriesService: CategoriesService,
-                private formBuilder: FormBuilder) {}
+                private productsService: ProductsService,
+                private formBuilder: FormBuilder,
+                private location: Location) {}
 
-    ngOnInit() {
+    public ngOnInit(): void {
         this.route.data
             .subscribe((data: { product: Product }) => {
                 this.product = data.product;
                 this.initForm();
             });
+        this.mode = this.route.snapshot.paramMap.get('mode') || Mode.create;
         this.categoriesService.getCategories().subscribe(categories => {
             this.categories = categories;
         });
+    }
+
+    public onProductSave() {
+        const updatedProduct = Object.assign(Object.assign({}, this.product), this.productForm.value);
+
+        if (this.mode === Mode.create) {
+            this.productsService.createProduct(updatedProduct);
+        } else {
+            this.productsService.updateProduct(updatedProduct);
+        }
+        this.location.back();
+    }
+
+    public onCancel() {
+        this.location.back();
     }
 
     private initForm() {
@@ -48,7 +75,7 @@ export class AddEditProductComponent implements OnInit {
             description: descriptionControl,
             cost: costControl,
             gender: genderControl,
-            category: categoryControl
+            categoryId: categoryControl
         });
     }
 

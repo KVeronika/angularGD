@@ -1,5 +1,8 @@
 <label for="category">Category</label>
 <select id="category" class="category-select" (change)="onSelect($event)">
     <option [value]="-1" [selected]="value === -1">None</option>
-    <option *ngFor="let category of categories" [value]="category.id">{{category.name}}</option>
+    <option *ngFor="let category of categories"
+            [value]="category.id"
+            [selected]="value === category.id">{{category.name}}
+    </option>
 </select>

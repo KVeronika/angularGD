@@ -14,7 +14,10 @@
                     <app-gender-input formControlName="gender"></app-gender-input>
                 </div>
                 <div>
-                    <app-category-input formControlName="category" [categories]="categories"></app-category-input>
+                    <app-category-input formControlName="categoryId"
+                                        [categories]="categories"
+                                        [predefinedCategoryId]="product.categoryId">
+                    </app-category-input>
                 </div>
             </div>
         </div>
@@ -24,7 +27,7 @@
         </div>
     </form>
     <div class="product-controls">
-        <button class="btn btn-submit save-btn col-3" type="button">Save</button>
-        <button class="btn btn-danger cancel-btn col-3" type="button">Cancel</button>
+        <button class="btn btn-submit save-btn col-3" type="button" (click)="onProductSave()">Save</button>
+        <button class="btn btn-danger cancel-btn col-3" type="button" (click)="onCancel()">Cancel</button>
     </div>
 </div>

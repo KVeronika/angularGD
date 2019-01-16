@@ -345,6 +345,16 @@
       "gender": "Woman",
       "count": 5,
       "soldCount": 0
+    },
+    {
+      "categoryId": 3,
+      "image": "./src/assets/images/noimage.jpg",
+      "name": "Test 12",
+      "description": "test male product. 10$ sweaters",
+      "cost": "10",
+      "rating": 0,
+      "gender": "male",
+      "id": 46
     }
   ]
 }
